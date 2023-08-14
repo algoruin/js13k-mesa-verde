@@ -30,10 +30,10 @@ const render = (t) => {
 };
 
 const updateBoard = (d) => {
-  if(keys["ArrowLeft"]) board.x += 100*d;
-  if(keys["ArrowRight"]) board.x -= 100*d;
-  if(keys["ArrowUp"]) board.y += 100*d;
-  if(keys["ArrowDown"]) board.y -= 100*d;
+  if (keys["ArrowLeft"]) board.x += 100 * d;
+  if (keys["ArrowRight"]) board.x -= 100 * d;
+  if (keys["ArrowUp"]) board.y += 100 * d;
+  if (keys["ArrowDown"]) board.y -= 100 * d;
   translate(board);
   for (const c of cards) translate(c);
 };
