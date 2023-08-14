@@ -19,7 +19,7 @@
 	border-radius: 8px;
 	position: absolute;
   transition: transform 0.25s;
-  border: 4px solid green;
+  border: 2px solid green;
 }
 
 .cursor {
@@ -44,5 +44,9 @@
   left: 0px;
   background-color: purple;
   width: 100vw;
-  height: 150px;
+  height: 200px;
+}
+
+.hand .card:hover {
+  z-index: 10;
 }

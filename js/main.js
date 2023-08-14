@@ -6,6 +6,7 @@ const CARD_WIDTH = 2 * CELL_SIZE;
 const CARD_HEIGHT = 1 * CELL_SIZE;
 const PAN_EDGE = 50;
 const PAN_SPEED = 7.5;
+const ae = addEventListener;
 
 // Game objects.
 const hand = {
@@ -42,7 +43,7 @@ for (var i = 0; i < 10; i++) {
 }
 
 // Fill hand with cards.
-for (var i = 0; i < 15; i++) {
+for (var i = 0; i < 20; i++) {
 	const card = new Card(i * CARD_WIDTH, 0);
 	card.addToHand(hand);
 }
@@ -92,14 +93,16 @@ const updateHand = (d) => {
 	if (hand.cards.length * CARD_WIDTH > innerWidth) {
 		// Overlap.
 		const handWidth = innerWidth - CARD_WIDTH;
-		const offset = handWidth / (hand.cards.length + 1);
+		const offset = (handWidth - CARD_WIDTH) / (hand.cards.length - 1)
 		hand.cards.forEach((c, i) => {
-			translate(c, i*offset + CELL_SIZE, 0);
+			translate(c, i*offset + CELL_SIZE, 0, 1);
 		});
 	} else {
 		// No overlap.
+		const handWidth = CARD_WIDTH * hand.cards.length;
+		const offset = (handWidth - CARD_WIDTH) / (hand.cards.length - 1)
 		hand.cards.forEach((c, i) => {
-			translate(c);
+			translate(c, i*offset + ((innerWidth - handWidth) / 2), 0, 1);
 		});
 	}
 };
@@ -112,27 +115,28 @@ const placeCard = (card, x, y) => {
 	card.y = y;
 };
 
-const translate = (go, x, y) => {
+const translate = (go, x, y, s = 1) => {
 	go.el.style.transform = `translate(
       ${x !== undefined ? x : go.x}px,
       ${y !== undefined ? y : go.y}px)
+	  scale(${s})
     `;
 };
 
-addEventListener("keydown", (e) => {
+ae("keydown", (e) => {
 	keys[e.code] = true;
 });
 
-addEventListener("keyup", (e) => {
+ae("keyup", (e) => {
 	if (keys[e.code]) keys[e.code] = false;
 });
 
-addEventListener("click", (e) => {
+ae("click", (e) => {
 	placeCard(board.cards[0], mouse.cx, mouse.cy);
 });
 
 // Update mouse object.
-addEventListener("mousemove", (e) => {
+ae("mousemove", (e) => {
 	// Screen.
 	mouse.x = e.clientX;
 	mouse.y = e.clientY;
