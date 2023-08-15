@@ -1,34 +1,34 @@
 .scene {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
-	background-color: #252525;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #252525;
 }
 
 .board {
-	position: absolute;
+  position: absolute;
 }
 
 .card {
-	background-color: white;
-	width: 200px;
-	height: 100px;
-	border-radius: 8px;
-	position: absolute;
+  background-color: white;
+  width: 200px;
+  height: 100px;
+  border-radius: 8px;
+  position: absolute;
   transition: transform 0.25s;
   border: 2px solid green;
 }
 
 .cursor {
-	position: absolute;
+  position: absolute;
   width: 200px;
   height: 100px;
   z-index: 10;
   border: 4px solid red;
-	border-radius: 8px;
+  border-radius: 8px;
   transition: transform 0.1s;
 }
 
@@ -47,6 +47,13 @@
   height: 200px;
 }
 
-.hand .card:hover {
-  z-index: 10;
+.side {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  background-color: yellow;
+  width: 300px;
+  height: calc(100vh - 200px);
 }
